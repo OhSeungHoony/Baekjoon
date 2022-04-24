@@ -1,15 +1,21 @@
-n, k = map(int, input().split())
+import sys
 
-coin = []
-count = []
-for _ in range(n):
-    coin_won = int(input())
-    coin.append(coin_won)
-coin.sort(reverse=True)
-for i in range(n):
-    if coin[i] > k:
-        continue
-    count.append(k // coin[i])
-    k = k % coin[i]
+if __name__ == "__main__":
+    n, k = map(int, sys.stdin.readline().split())
 
-print(sum(count))
+    coin = []
+
+    for _ in range(n):
+        coin.append(int(sys.stdin.readline()))
+
+    coin.sort(reverse=True)
+
+    count = 0
+    for c in coin:
+        if c > k:
+            continue
+        count += k // c
+        k = k % c
+
+    print(count)
+
